@@ -1,8 +1,7 @@
-// cypress/integration/product_spec.js
 
 describe('Cadastro de Produto', () => {
   beforeEach(() => {
-    cy.visit('/cadastroProduto'); // Ajuste a URL conforme necessário
+    cy.visit('/cadastroProduto');
   });
 
   it('Cadastro de produto com dados válidos', () => {
@@ -42,14 +41,13 @@ describe('Cadastro de Produto', () => {
   });
 
   it('Cadastro de produto com nome duplicado', () => {
-    // Primeiro cadastro para criar duplicidade
+    
     cy.get('#inputNome').type('Produto D');
     cy.get('#inputPreco').type('30.00');
     cy.get('#inputValidade').type('31/12/2021');
     cy.contains('Adicionar').click();
     cy.contains('Produto D').should('exist');
     
-    // Tentativa de cadastro duplicado
     cy.visit('/cadastro-produto');
     cy.get('#inputNome').type('Produto D');
     cy.get('#inputPreco').type('30.00');
